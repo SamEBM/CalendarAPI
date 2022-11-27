@@ -12,7 +12,7 @@ dbConnection();
 // CORS
 app.use(cors());
 
-// Directorio Público
+// Directorio Público - Aplicacion React
 app.use(express.static('public'));
 
 // Lectura y Parseo de Body
@@ -22,7 +22,14 @@ app.use(express.json());
 
 // Autenticación
 app.use('/api/auth', require('./routes/auth'));
+
+// Evntos de Calendario
 app.use('/api/events', require('./routes/events'));
+
+// Mostrar frontend para la ruta auth/login
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
 
 // CRUD de eventos
 
